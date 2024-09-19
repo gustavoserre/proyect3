@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Nueva Venta{% endblock %}
+
+{% block content %}
+    <h2>Registrar Nueva Venta</h2>
+
+    <!-- Formulario de búsqueda de productos -->
+    <form method="POST" action="{{ url_for('crear_venta') }}">
+        <div class="mb-3">
+            <label for="id_producto" class="form-label">Producto</label>
+            <select class="form-select" name="id_producto" required>
+                <option value="" disabled selected>Selecciona un producto</option>
+                {% for producto in productos %}
+                    <option value="{{ producto.ID_producto }}">{{ producto.Nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" name="cantidad" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="precio_de_venta" class="form-label">Precio de Venta</label>
+            <input type="number" class="form-control" name="precio_de_venta" step="0.01" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_cliente" class="form-label">Cliente</label>
+            <select class="form-select" name="id_cliente" required>
+                <option value="" disabled selected>Selecciona un cliente</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.ID_cliente }}">{{ cliente.Nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar Venta</button>
+    </form>
+{% endblock %}

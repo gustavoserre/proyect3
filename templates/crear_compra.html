@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Compra{% endblock %}
+
+{% block content %}
+    <h2>Registrar Nueva Compra</h2>
+
+    <!-- Formulario de búsqueda de productos -->
+    <form method="POST" action="{{ url_for('crear_compra') }}">
+        <div class="mb-3">
+            <label for="id_producto" class="form-label">Producto</label>
+            <select class="form-select" name="id_producto" required>
+                <option value="" disabled selected>Selecciona un producto</option>
+                {% for producto in productos %}
+                    <option value="{{ producto.ID_producto }}">{{ producto.Nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" name="cantidad" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="costo" class="form-label">Costo</label>
+            <input type="number" class="form-control" name="costo" step="0.01" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_proveedor" class="form-label">Proveedor</label>
+            <select class="form-select" name="id_proveedor" required>
+                <option value="" disabled selected>Selecciona un proveedor</option>
+                {% for proveedor in proveedores %}
+                    <option value="{{ proveedor.ID_proveedor }}">{{ proveedor.Nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar Compra</button>
+    </form>
+{% endblock %}

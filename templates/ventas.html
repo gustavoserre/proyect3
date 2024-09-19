@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Ventas{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Ventas</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="{{ url_for('crear_venta') }}" class="btn btn-success">Nueva Venta</a>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cliente</th>
+                <th>Cantidad</th>
+                <th>Precio de Venta</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.Producto }}</td>
+                <td>{{ venta.Cliente }}</td>
+                <td>{{ venta.Cantidad }}</td>
+                <td>{{ venta.Precio_de_venta }}</td>
+                <td>
+                    <form action="{{ url_for('eliminar_venta', id_venta=venta.ID_venta) }}" method="POST" style="display:inline-block;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
