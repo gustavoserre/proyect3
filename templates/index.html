@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}SISTEMA WEB - Inicio{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pb-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Clientes</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <br>
+                    <p class="card-text">Aquí podrás agregar, editar, quitar o buscar un cliente.</p>
+                    <a href="{{ url_for('listar_clientes') }}" class="card-link">Clientes</a>
+                </div>
+            </div>
+        </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Productos</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <br>
+                        <p class="card-text">Aquí podrás agregar, editar, quitar o buscar un producto.</p>
+                        <a href="{{ url_for('listar_productos') }}" class="card-link">Productos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Compras</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Compra a proveedores</h6>
+                        <p class="card-text">Aquí podrás realizar compras, editar, quitar o buscar compras.</p>
+                        <a href="{{ url_for('listar_compras') }}" class="card-link">Compras</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Stock</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Consulta el stock</h6>
+                        <p class="card-text">Aquí podrás consultar el stock de los productos.</p>
+                        <a href="#" class="card-link">Card link</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Proveedores</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">Aquí podrás agregar, editar, quitar o buscar un proveedor.</p>
+                        <a href="{{ url_for('listar_proveedores') }}" class="card-link">Proveedores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ventas</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">Aquí podrás realizar ventas, editar, quitar o buscar ventas.</p>
+                        <a href="{{ url_for('listar_ventas') }}" class="card-link">Ventas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock %}

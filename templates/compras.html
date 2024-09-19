@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Compras{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Compras</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="{{ url_for('crear_compra') }}" class="btn btn-success">Nueva Compra</a>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Costo</th>
+                <th>Proveedor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for compra in compras %}
+            <tr>
+                <td>{{ compra.Producto }}</td>
+                <td>{{ compra.Cantidad }}</td>
+                <td>{{ compra.Costo }}</td>
+                <td>{{ compra.Proveedor }}</td>
+                <td>
+                    <form action="{{ url_for('eliminar_compra', id_compra=compra.ID_compra) }}" method="POST" style="display:inline-block;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Producto{% endblock %}
+
+{% block content %}
+    <h2>Editar Producto</h2>
+    <form method="POST" action="{{ url_for('editar_producto', nombre=producto.Nombre) }}">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" value="{{ producto.Nombre }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="detalle" class="form-label">Detalle</label>
+            <textarea class="form-control" name="detalle" rows="3">{{ producto.Detalle }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="costo" class="form-label">Costo</label>
+            <input type="number" class="form-control" name="costo" step="0.01" value="{{ producto.Costo }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="id_proveedor" class="form-label">ID Proveedor</label>
+            <input type="number" class="form-control" name="id_proveedor" value="{{ producto.ID_proveedor }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+{% endblock %}

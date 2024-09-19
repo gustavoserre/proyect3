@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Producto{% endblock %}
+
+{% block content %}
+    <h2>Crear Producto</h2>
+    <form method="POST" action="{{ url_for('crear_producto') }}">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="detalle" class="form-label">Detalle</label>
+            <textarea class="form-control" name="detalle" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="costo" class="form-label">Costo</label>
+            <input type="number" class="form-control" name="costo" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="id_proveedor" class="form-label">Proveedor</label>
+            <select class="form-select" name="id_proveedor" required>
+                <option value="" disabled selected>Selecciona un proveedor</option>
+                {% for proveedor in proveedores %}
+                    <option value="{{ proveedor.ID_proveedor }}">{{ proveedor.ID_proveedor }} - {{ proveedor.Nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Producto</button>
+    </form>
+{% endblock %}

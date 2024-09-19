@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Productos{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Productos</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="{{ url_for('crear_producto') }}" class="btn btn-success">Nuevo Producto</a>
+        </div>
+    </div>
+
+    <!-- Formulario de búsqueda -->
+    <form method="POST" action="{{ url_for('listar_productos') }}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="search" placeholder="Buscar producto por nombre" value="{{ search_query }}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+            <a href="{{ url_for('listar_productos') }}" class="btn btn-secondary">Limpiar Búsqueda</a> <!-- Botón de limpiar búsqueda -->
+        </div>
+    </form>
+
+    <!-- Tabla de productos -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Detalle</th>
+                <th>Costo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.Nombre }}</td>
+                <td>{{ producto.Detalle }}</td>
+                <td>{{ producto.Costo }}</td>
+                <td>
+                    <a href="{{ url_for('editar_producto', nombre=producto.Nombre) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('eliminar_producto', nombre=producto.Nombre) }}" method="POST" style="display:inline-block;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

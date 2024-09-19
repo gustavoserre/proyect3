@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Proveedores{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Proveedores</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="{{ url_for('crear_proveedor') }}" class="btn btn-success">Nuevo Proveedor</a>
+        </div>
+    </div>
+
+    <form method="POST" action="{{ url_for('listar_proveedores') }}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="search" placeholder="Buscar proveedor por nombre" value="{{ search_query }}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Empresa</th>
+                <th>CUIT</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td>{{ proveedor.Nombre }}</td>
+                <td>{{ proveedor.Empresa }}</td>
+                <td>{{ proveedor.Cuit }}</td>
+                <td>{{ proveedor.Direccion }}</td>
+                <td>{{ proveedor.Telefono }}</td>
+                <td>{{ proveedor.Email }}</td>
+                <td>
+                    <a href="{{ url_for('editar_proveedor', nombre=proveedor.Nombre) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('eliminar_proveedor', nombre=proveedor.Nombre) }}" method="POST" style="display:inline-block;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
